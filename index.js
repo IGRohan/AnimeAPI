@@ -16,10 +16,11 @@ import {
     fetchAnimixAnimeInfo,
     fetchAnimixEpisodeInfo,
     fetchAnimixEpisodeSource,
-    fetchGogoanimeEpisodeSource
+    fetchGogoanimeEpisodeSource,
+    fetchGogoDayTopAnimes
 } from './scraper/scrape.js';
 
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors());
 app.use(express.json())
 
 
@@ -113,8 +114,12 @@ app.get('/gogoanime/watch/:episodeId', async (req, res) => {
     res.json(data).status(200)
 });
 
+app.get("/gogoanime/daytop", async (req, res) => {
+    const data = await fetchGogoDayTopAnimes({});
+    res.send(data);
+})
 //Start the web-server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`API running on http://localhost:${PORT}`)
 });
