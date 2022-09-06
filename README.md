@@ -502,6 +502,31 @@ Output
 }
 ```
 
+### Get top animes of the day
+
+```http
+  GET /gogoanime/daytop
+```
+Output 
+```json
+[
+  {
+    "animeTitle": "Overlord IV",
+    "animeEp": "Episode:  1",
+    "watchLink": "https://ww3.gogoanime2.org/anime/overlord-iv"
+  },
+  {...}
+  {...}  
+]
+```
+
+Example: 
+
+```js
+axios.get('/gogoanime/daytop')
+.then(response => response.data)
+```
+
 ## Contributing
 
 Contributions are always welcome!
