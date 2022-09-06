@@ -7,6 +7,7 @@ const animixBase = "https://animixplay.to/"
 const animixSearchApi = "https://cachecow.eu/api/search";
 const animixAll = "https://animixplay.to/assets/s/all.json";
 const gogoBase2 = "https://gogoanime.gg/";
+const gogoBase3 = "https://ww3.gogoanime2.org/home"
 const gogoajax = "https://ajax.gogo-load.com/";
 const episodeListPage = "https://ajax.gogo-load.com/ajax/load-list-episode";
 const goloadStreaming = "https://goload.pro/streaming.php"
@@ -518,3 +519,20 @@ export const fetchGogoanimeEpisodeSource = async ({ episodeId }) => {
         }
     }
 };
+
+export const fetchGogoDayTopAnimes = async ({ list = [] }) => {
+    try {
+        const res = await axios.get(gogoBase3);
+        const $ = load(res.data);
+        $("div#load_topivews > ul > li").each((li, el) => {
+          list.push({
+            animeTitle: $(el).find("a  ").attr("title"),
+            animeEp: $(el).find("p.reaslead  ").text(),
+            watchLink : "https://ww3.gogoanime2.org"+$(el).find("a").attr("href")
+          });
+        });
+        return list;
+      } catch (error) {
+        console.log(error);
+      }
+}
