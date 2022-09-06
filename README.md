@@ -507,6 +507,14 @@ Output
 ```http
   GET /gogoanime/daytop
 ```
+
+Example: 
+
+```js
+axios.get('/gogoanime/daytop')
+.then(response => response.data)
+```
+
 Output 
 ```json
 [
@@ -520,12 +528,7 @@ Output
 ]
 ```
 
-Example: 
 
-```js
-axios.get('/gogoanime/daytop')
-.then(response => response.data)
-```
 
 ## Contributing
 
